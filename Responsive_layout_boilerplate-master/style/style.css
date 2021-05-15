@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap');
-
 /* Remove default formatting and specify basic parameters */
 * {
   margin: 0px;
@@ -8,9 +6,9 @@
   text-decoration: none;
 }
 body {
-  font-family: 'Sen', sans-serif;
+  color: rgb(255, 255, 255);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-align: center;
-  color: black;
 }
 
 /*---------- Grid template areas -----------*/
@@ -23,13 +21,13 @@ body {
     margin: 0 auto;
     grid-gap: 10px;
     grid-template-areas:
-      'header'
-      'nav'
-      'main'
-      'article'
-      'section'
-      'aside'
-      'footer';
+      "header"
+      "nav"
+      "main"
+      "article"
+      "section"
+      "aside"
+      "footer";
   }
 }
 /* Tablets */
@@ -42,18 +40,18 @@ body {
     margin: 0 auto;
     grid-gap: 10px;
     grid-template-areas:
-      'header header header header'
-      'nav nav nav nav'
-      'nav nav nav nav'
-      'section section section section'
-      'aside main main main'
-      'aside main main main'
-      '. main main main'
-      '. main main main'
-      'article article article article'
-      'article article article article'
-      'article article article article'
-      'footer footer footer footer';
+      "header header header header"
+      "nav nav nav nav"
+      "nav nav nav nav"
+      "section section section section"
+      "aside main main main"
+      "aside main main main"
+      ". main main main"
+      ". main main main"
+      "article article article article"
+      "article article article article"
+      "article article article article"
+      "footer footer footer footer";
   }
 }
 /* Laptops and desktops */
@@ -66,17 +64,17 @@ body {
     margin: 0 auto;
     grid-gap: 10px;
     grid-template-areas:
-      'header header header header header header header header'
-      'nav nav nav nav nav nav nav nav'
-      'nav nav nav nav nav nav nav nav'
-      'aside main main main main section section section'
-      'aside main main main main section section section'
-      'aside main main main main section section section'
-      'aside main main main main . . .'
-      'article article article article article article article article'
-      'article article article article article article article article'
-      'article article article article article article article article'
-      'footer footer footer footer footer footer footer footer';
+      "header header header header header header header header"
+      "nav nav nav nav nav nav nav nav"
+      "nav nav nav nav nav nav nav nav"
+      "aside main main main main section section section"
+      "aside main main main main section section section"
+      "aside main main main main section section section"
+      "aside main main main main . . ."
+      "article article article article article article article article"
+      "article article article article article article article article"
+      "article article article article article article article article"
+      "footer footer footer footer footer footer footer footer";
   }
 }
 
@@ -105,8 +103,7 @@ footer {
 
 /* Identify grid areas */
 #content > * {
-  border: cornflowerblue solid 2px;
-  border-radius: 15px;
+  background-color: cornflowerblue;
   padding: 30px;
 }
 

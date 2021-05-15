@@ -1,6 +1,6 @@
 # Webpack Boiler Plate
 
-Node, Express.js, Sass, various webpack loaders and plugins.
+Node.js, Express.js, Sass, various webpack loaders and plugins.
 
 There are numerous deprecation warnings. Shut up, it runs.
 
