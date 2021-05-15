@@ -2,7 +2,7 @@
 
 Node, Express.js, Sass, various webpack loaders and plugins.
 
-Shut up, it runs.
+There are numerous deprecation warnings. Shut up, it runs.
 
 Instructions:
 
@@ -14,4 +14,6 @@ Instructions:
    This will start a development environment with hot reloading, etc.
 
 4. For prod, run 'npm run build-prod', then 'npm start'
-   This will build a production version of the app and serve it via Node. The Node server listens on port 8080.
+   This will build a production version of the app and serve it via Node. The Node server listens on port 3030.
+
+   - Note - you may have to install webpack CLI as well.

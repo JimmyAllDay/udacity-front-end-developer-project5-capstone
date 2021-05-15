@@ -12,7 +12,7 @@ const express = require('express');
 const app = express();
 
 // set port
-const port = 8080;
+const port = 3030;
 
 // -------------Middleware -------------------
 

@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 
 module.exports = {
-  entry: './src/client/index.js',
+  entry: '/src/client/index.js',
   mode: 'development',
   devtool: 'source-map',
   stats: 'verbose',
