@@ -17,7 +17,7 @@ function getData() {
   };
 
   // Validation logic
-  // This isn't working 100% - it doesn't take same day entries
+  // This isn't working 100% - the input field doesn't take same day entries
   // You should refactor this function to make the validation more robust
   if (city != '' && Date.parse(date) > Date.now()) {
     return cityAndDate;
