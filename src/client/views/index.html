@@ -7,25 +7,50 @@
   </head>
 
   <body>
+    <div id="absolute-header">
+      <h1>Travel Planner</h1>
+    </div>
     <div id="content">
       <header>Header</header>
-      <nav>Nav</nav>
+      <nav>
+        <h1>Travel Planner</h1>
+      </nav>
+      <aside>
+        <form>
+          <input
+            type="text"
+            placeholder="Enter city here"
+            name="city"
+            id="city"
+            required
+          />
+          <input type="date" id="date" />
+          <input type="button" value="Vacation Time!" id="submitbtn" />
+        </form>
+      </aside>
+
       <main>
-        Main
+        <p>Travelling to:</p>
+        <div class="dest-result"></div>
+        <br />
+        <br />
+        <p>Travelling on:</p>
+        <div class="date-result"></div>
       </main>
+
       <article>Article</article>
       <section>Section</section>
-      <aside>Aside</aside>
+
       <footer>Footer</footer>
     </div>
     <script>
-      // Check that service workers are supported
-      if ('serviceWorker' in navigator) {
-        // Use the window load event to keep the page load performant
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/service-worker.js');
-        });
-      }
+      // // Check that service workers are supported
+      // if ('serviceWorker' in navigator) {
+      //   // Use the window load event to keep the page load performant
+      //   window.addEventListener('load', () => {
+      //     navigator.serviceWorker.register('/service-worker.js');
+      //   });
+      // }
     </script>
   </body>
 </html>

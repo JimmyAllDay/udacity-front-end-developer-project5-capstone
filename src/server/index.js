@@ -28,8 +28,6 @@ const cors = require('cors');
 // import body-parser
 const bodyParser = require('body-parser');
 
-// -------------------- API Variables ---------------------
-
 // -------------------init middleware----------------------
 
 // init middleware
@@ -46,7 +44,28 @@ app.listen(port, function() {
   console.log(`Example app listening on port ${port}`);
 });
 
-// GET Route
-app.get('/', (req, res) => {
-  console.log(req);
+// Chained API Calls
+async function getAPIs() {
+  // Geonames variables
+  let geonamesData = {};
+  const geoUserName = 'jimmyallday';
+  const geoAddress = appData[0].input;
+  const geoURL = `http://api.geonames.org/geoCodeAddressJSON?q=${geoAddress}&username=${geoUserName}`;
+  await fetch(geoURL)
+    .then(response => response.json())
+    .then(data => {
+      geonamesData = { lng: data.address.lng, lat: data.address.lat };
+      console.log(geonamesData);
+      // I want to do more in here with lng and lat
+    })
+    .catch(
+      err => `An error occured while fetching from geonames:${console.log(err)}`
+    );
+}
+
+// POST Route
+app.post('/geoname', (req, res) => {
+  appData.push(req.body);
+  getAPIs();
+  res.send({ response: 'response from post route is working' });
 });
