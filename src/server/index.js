@@ -45,10 +45,9 @@ app.listen(port, function() {
 });
 
 // ----------------------Geonames------------------------
-let geoCoords = {};
 
 // get data from geonames API
-async function getGeoCoords() {
+const getGeoCoords = async callback => {
   // Geonames variables
   const geoUserName = 'jimmyallday';
   const geoAddress = appData.input;
@@ -58,24 +57,28 @@ async function getGeoCoords() {
   await fetch(geoURL)
     .then(response => response.json())
     .then(data => {
-      geoCoords = { lng: data.address.lng, lat: data.address.lat };
+      callback(data);
     })
     .catch(
       err =>
         `An error occured while fetching from geonames API:${console.log(err)}`
     );
-}
+};
 // ----------------------Weatherbit---------------------
 // get weather data from  weatherbit API
 const getWeather = async callback => {
   // declare variables
+  let geoCoords = {};
   const weatherbitKey = 'a348677a97634b37b0e00c848638f61b';
-  await getGeoCoords();
+  await getGeoCoords(data => {
+    geoCoords = { lng: data.address.lng, lat: data.address.lat };
+  });
   await fetch(
     `https://api.weatherbit.io/v2.0/current?lat=${geoCoords.lat}&lon=${geoCoords.lng}&key=${weatherbitKey}`
   )
     .then(response => response.json())
     .then(data => {
+      console.log(data);
       callback(data);
     })
     .catch(err => `An error occured while fetching from weatherbit API:${err}`);
@@ -104,11 +107,11 @@ app.post('/geoname', async (req, res) => {
   appData = req.body;
   let responseData = [];
   await getWeather(data => {
-    responseData.push(data);
+    responseData.push({ weatherbit: data });
     console.log(responseData);
   });
   await getImage(data => {
-    responseData.push(data);
+    responseData.push({ pixabay: data });
   });
 
   await res.send(responseData);
