@@ -50,7 +50,7 @@ app.listen(port, function() {
 const getGeoCoords = async callback => {
   // Geonames variables
   const geoUserName = 'jimmyallday';
-  const geoAddress = appData.input;
+  const geoAddress = appData.userCity;
   const geoURL = `http://api.geonames.org/geoCodeAddressJSON?q=${geoAddress}&username=${geoUserName}`;
 
   // fetch latitude and longitude from geonames
@@ -65,6 +65,7 @@ const getGeoCoords = async callback => {
     );
 };
 // ----------------------Weatherbit---------------------
+
 // get weather data from  weatherbit API
 const getWeather = async callback => {
   // declare variables
@@ -78,7 +79,6 @@ const getWeather = async callback => {
   )
     .then(response => response.json())
     .then(data => {
-      console.log(data);
       callback(data);
     })
     .catch(err => `An error occured while fetching from weatherbit API:${err}`);

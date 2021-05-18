@@ -22,5 +22,5 @@ submitButton.addEventListener('click', async function() {
   console.log(inputs);
 
   //   compareDate(a, b); - this may be needed to check if the user inputted date is within a week
-  sendGeoName(inputs.userCity);
+  sendGeoName(inputs);
 });

@@ -12,8 +12,8 @@ function getData() {
   // Output object
   let cityAndDate = {
     userCity: city,
-    todayDate: today,
-    userDate: date
+    todayDate: new Date(today),
+    userDate: new Date(date)
   };
 
   // Validation logic
