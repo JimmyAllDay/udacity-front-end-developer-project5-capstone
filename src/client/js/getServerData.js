@@ -1,4 +1,4 @@
-async function sendGeoName(userData) {
+async function getServerData(userData) {
   // declare data to send
   const apiData = userData;
 
@@ -37,4 +37,4 @@ async function sendGeoName(userData) {
     console.log(serverData);
   });
 }
-export { sendGeoName };
+export { getServerData };

@@ -91,7 +91,7 @@ const getImage = async callback => {
   const pixabayBaseURL = 'https://pixabay.com/api/';
   const pixabayKey = '21655976-5d826fa8819430011ae8ac9d3';
   await fetch(
-    `${pixabayBaseURL}?key=${pixabayKey}&q=${appData.input}+city&image_type=photo&category=places`
+    `${pixabayBaseURL}?key=${pixabayKey}&q=${appData.userCity}+city&image_type=photo&category=places`
   )
     .then(response => response.json())
     .then(data => {
@@ -105,6 +105,7 @@ const getImage = async callback => {
 // POST Route
 app.post('/geoname', async (req, res) => {
   appData = req.body;
+  console.log(appData);
   let responseData = [];
   await getWeather(data => {
     responseData.push({ weatherbit: data });
@@ -112,6 +113,7 @@ app.post('/geoname', async (req, res) => {
   });
   await getImage(data => {
     responseData.push({ pixabay: data });
+    console.log(responseData);
   });
 
   await res.send(responseData);

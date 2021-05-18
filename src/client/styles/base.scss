@@ -68,12 +68,13 @@ body {
     grid-gap: 10px;
     grid-template-areas:
       'header header header header header header header header'
-      'aside aside section section main main main main'
-      'aside aside section section main main main main'
-      'aside aside section section main main main main'
-      'aside aside section section main main main main'
-      'nav nav nav nav nav nav nav nav'
-      'article article article article article article article article'
+      'aside aside section main main main main main'
+      'aside aside section main main main main main'
+      'aside aside section main main main main main'
+      'aside aside section main main main main main'
+      'nav nav nav main main main main main'
+      'article article article main main main main main'
+      'article article article main main main main main'
       'footer footer footer footer footer footer footer footer';
   }
   header h1 {

@@ -1,4 +1,4 @@
-function getData() {
+function getUserInput() {
   // Get user input from UI
   const city = document.getElementById('city').value;
   const userDateInput = document.getElementById('date').value;
@@ -28,4 +28,4 @@ function getData() {
   }
 }
 
-export { getData };
+export { getUserInput };

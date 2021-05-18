@@ -1,5 +1,5 @@
-import { getData } from './js/getData.js';
-import { sendGeoName } from './js/sendGeoName.js';
+import { getUserInput } from './js/getUserInput.js';
+import { getServerData } from './js/getServerData.js';
 // import { compareDate } from './js/compareDate.js';
 import { updateUI } from './js/updateUI.js';
 import './styles/resets.scss';
@@ -18,9 +18,7 @@ const submitButton = document.getElementById('submitbtn');
 updateUI();
 
 submitButton.addEventListener('click', async function() {
-  const inputs = await getData();
+  const inputs = await getUserInput();
   console.log(inputs);
-
-  //   compareDate(a, b); - this may be needed to check if the user inputted date is within a week
-  sendGeoName(inputs);
+  getServerData(inputs);
 });
