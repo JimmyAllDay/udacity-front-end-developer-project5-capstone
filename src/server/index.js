@@ -59,18 +59,15 @@ async function getGeoCoords() {
     .then(response => response.json())
     .then(data => {
       geoCoords = { lng: data.address.lng, lat: data.address.lat };
-      return data;
     })
     .catch(
-      err => `An error occured while fetching from geonames:${console.log(err)}`
+      err =>
+        `An error occured while fetching from geonames API:${console.log(err)}`
     );
 }
-
 // ----------------------Weatherbit---------------------
-// This variable isn't scoped properly?
-let weatherData = {};
 // get weather data from  weatherbit API
-async function getWeather() {
+const getWeather = async callback => {
   // declare variables
   const weatherbitKey = 'a348677a97634b37b0e00c848638f61b';
   await getGeoCoords();
@@ -79,40 +76,40 @@ async function getWeather() {
   )
     .then(response => response.json())
     .then(data => {
-      console.log(data);
-      weatherData = data;
-      return data;
+      callback(data);
     })
-    .catch(err => console.log(err));
-}
+    .catch(err => `An error occured while fetching from weatherbit API:${err}`);
+};
 
-// ----------------------Pixabay-----------------------
+// ---------------------Pixabay-----------------------
+
 // get image from pixabayAPI
-async function getImage() {
+const getImage = async callback => {
   const pixabayBaseURL = 'https://pixabay.com/api/';
   const pixabayKey = '21655976-5d826fa8819430011ae8ac9d3';
-  fetch(
+  await fetch(
     `${pixabayBaseURL}?key=${pixabayKey}&q=${appData.input}+city&image_type=photo&category=places`
   )
     .then(response => response.json())
     .then(data => {
-      // you will need to filter the pixabay results
-
-      console.log(data);
-    });
-}
+      callback(data);
+    })
+    .catch(err => `An error occured while fetching from pixabay API:${err}`);
+};
 
 // ----------------------Response---------------------
-async function response() {
-  await getWeather();
-  await getImage();
-}
 
 // POST Route
-app.post('/geoname', (req, res) => {
+app.post('/geoname', async (req, res) => {
   appData = req.body;
-  console.log(appData);
-  getImage();
+  let responseData = [];
+  await getWeather(data => {
+    responseData.push(data);
+    console.log(responseData);
+  });
+  await getImage(data => {
+    responseData.push(data);
+  });
 
-  res.send({ response: 'response from post route is working' });
+  await res.send(responseData);
 });
