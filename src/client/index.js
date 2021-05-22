@@ -20,5 +20,6 @@ submitButton.addEventListener('click', async function() {
   const inputs = await getUserInput();
   console.log(inputs);
 
-  getServerData(inputs);
+  let data = await getServerData();
+  console.log(data);
 });
