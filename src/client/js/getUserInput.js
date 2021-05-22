@@ -12,8 +12,8 @@ function getUserInput() {
   // Output object
   let cityAndDate = {
     userCity: city,
-    todayDate: new Date(today),
-    userDate: new Date(date)
+    todayDate: today,
+    userDate: date
   };
 
   // Validation logic

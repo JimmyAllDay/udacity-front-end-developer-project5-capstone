@@ -1,6 +1,5 @@
 import { getUserInput } from './js/getUserInput.js';
 import { getServerData } from './js/getServerData.js';
-// import { compareDate } from './js/compareDate.js';
 import { updateUI } from './js/updateUI.js';
 import './styles/resets.scss';
 import './styles/base.scss';
@@ -20,5 +19,6 @@ updateUI();
 submitButton.addEventListener('click', async function() {
   const inputs = await getUserInput();
   console.log(inputs);
+
   getServerData(inputs);
 });

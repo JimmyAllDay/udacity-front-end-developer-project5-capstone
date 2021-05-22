@@ -1,11 +1,11 @@
-async function getServerData(userData) {
+const getServerData = userData => {
   // declare data to send
   const apiData = userData;
 
   // declare route
-  const url = 'http://localhost:3030/geoname';
+  const url = 'http://localhost:3030/nodeserver';
 
-  //   declare request options
+  //   declare POST request options
   const options = {
     method: 'POST',
     headers: {
@@ -23,7 +23,7 @@ async function getServerData(userData) {
       })
       .catch(err =>
         console.log(
-          `There was an error fetching from the API post route:${err}`
+          `There was an error fetching from the API POST route:${err}`
         )
       );
   };
@@ -36,5 +36,5 @@ async function getServerData(userData) {
     serverData = data;
     console.log(serverData);
   });
-}
+};
 export { getServerData };

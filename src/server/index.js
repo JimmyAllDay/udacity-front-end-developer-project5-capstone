@@ -64,24 +64,70 @@ const getGeoCoords = async callback => {
         `An error occured while fetching from geonames API:${console.log(err)}`
     );
 };
-// ----------------------Weatherbit---------------------
+// ----------------------WEATHERBIT---------------------
 
-// get weather data from  weatherbit API
-const getWeather = async callback => {
+// -------------------Compare time values---------------
+// Taken from https://stackoverflow.com/questions/3224834/get-difference-between-2-dates-in-javascript
+
+const compareDate = () => {
+  const userDate = new Date(appData.userDate);
+  const todayDate = new Date(appData.todayDate);
+
+  const msPerDay = 1000 * 60 * 60 * 24;
+
+  // a and b are javascript Date objects
+  function dateDiffInDays(a, b) {
+    // Discard the time and time-zone information.
+    const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+    const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+    return Math.floor((utc2 - utc1) / msPerDay);
+  }
+  // test it
+  const difference = dateDiffInDays(todayDate, userDate);
+  return difference;
+};
+
+// -------------------Fetch from Weatherbit---------------
+const getWeather = async (days, callback) => {
+  const daysDiff = days;
+  console.log(daysDiff);
   // declare variables
   let geoCoords = {};
+  const weatherBaseUrl = 'https://api.weatherbit.io/v2.0/';
   const weatherbitKey = 'a348677a97634b37b0e00c848638f61b';
   await getGeoCoords(data => {
     geoCoords = { lng: data.address.lng, lat: data.address.lat };
   });
-  await fetch(
-    `https://api.weatherbit.io/v2.0/current?lat=${geoCoords.lat}&lon=${geoCoords.lng}&key=${weatherbitKey}`
-  )
-    .then(response => response.json())
-    .then(data => {
-      callback(data);
-    })
-    .catch(err => `An error occured while fetching from weatherbit API:${err}`);
+  // logic to determine which API to hit
+  if (daysDiff >= 7) {
+    console.log(`hitting the 7+ days api`);
+    // If the date of travel is < 6 days
+    await fetch(
+      `${weatherBaseUrl}forecast/daily?lat=${geoCoords.lat}&lon=${geoCoords.lng}&key=${weatherbitKey}`
+    )
+      .then(response => response.json())
+      .then(data => {
+        callback(data);
+      })
+      .catch(
+        err =>
+          `An error occured while fetching from weatherbit future forecast API:${err}`
+      );
+  } else {
+    console.log(`hitting the 6- days api`);
+    await fetch(
+      `${weatherBaseUrl}current?lat=${geoCoords.lat}&lon=${geoCoords.lng}&key=${weatherbitKey}`
+    )
+      .then(response => response.json())
+      .then(data => {
+        callback(data);
+      })
+      .catch(
+        err =>
+          `An error occured while fetching from weatherbit current weather API:${err}`
+      );
+  }
 };
 
 // ---------------------Pixabay-----------------------
@@ -103,18 +149,15 @@ const getImage = async callback => {
 // ----------------------Response---------------------
 
 // POST Route
-app.post('/geoname', async (req, res) => {
+app.post('/nodeserver', async (req, res) => {
   appData = req.body;
   console.log(appData);
   let responseData = [];
-  await getWeather(data => {
+  await getWeather(compareDate(), data => {
     responseData.push({ weatherbit: data });
-    console.log(responseData);
   });
   await getImage(data => {
     responseData.push({ pixabay: data });
-    console.log(responseData);
   });
-
   await res.send(responseData);
 });
