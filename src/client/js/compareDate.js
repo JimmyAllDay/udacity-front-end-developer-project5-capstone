@@ -5,9 +5,7 @@ const compareDate = () => {
 
   // ------------------calculate difference between UI dates-------------------
   const depDate = new Date(departureDate);
-  console.log(depDate);
   const retDate = new Date(returnDate);
-  console.log(retDate);
 
   // Taken from https://stackoverflow.com/questions/3224834/get-difference-between-2-dates-in-javascript
   const msPerDay = 1000 * 60 * 60 * 24;
@@ -22,7 +20,7 @@ const compareDate = () => {
   }
   // test it
   const difference = dateDiffInDays(depDate, retDate);
-  return (duration.innerHTML = `<p>${difference} day/s</p>`);
+  return (duration.innerHTML = `${difference} day/s`);
 };
 
 export { compareDate };

@@ -35,8 +35,9 @@ p {
     display: grid;
     grid-template-columns: 1fr;
     grid-auto-rows: minmax(100px, auto);
+    max-width: 90%;
     margin: 0 auto;
-    grid-gap: 10px;
+    grid-gap: 30px;
     grid-template-areas:
       'header'
       'aside'
@@ -55,13 +56,13 @@ p {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: minmax(100px, auto);
-    max-width: 1000px;
+    max-width: 90%;
     margin: 0 auto;
-    grid-gap: 10px;
+    grid-gap: 20px;
     grid-template-areas:
       'header header header header'
-      'aside section article article'
-      'aside section article article'
+      'aside section section .'
+      'aside article article article'
       'main main main main'
       'main main main main'
       'main main main main'
@@ -70,6 +71,9 @@ p {
       'main main main main'
       'footer footer footer footer';
   }
+  section {
+    text-align: left;
+  }
 }
 /* Laptops and desktops */
 @media only screen and (min-width: 1100px) {
@@ -77,9 +81,9 @@ p {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     grid-auto-rows: minmax(80px, auto);
-    max-width: 1300px;
+    max-width: 90%;
     margin: 0 auto;
-    grid-gap: 10px;
+    grid-gap: 20px;
     grid-template-areas:
       'header header header header header header header header'
       'aside aside section main main main main main'
@@ -93,6 +97,9 @@ p {
   }
   p {
     font-size: 0.65em;
+  }
+  article .dyn-disp {
+    margin-top: 30px;
   }
 }
 
@@ -112,21 +119,21 @@ main {
   display: none;
 }
 #placeImage {
-  width: 90%;
-  height: 90%;
-  margin: auto auto;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
   border-radius: 5px;
+  object-fit: cover;
 }
 article {
   grid-area: article;
-  padding: 30px;
+  // padding: 30px;
   text-align: left;
 }
 article h2 {
   text-align: left;
 }
 section {
-  padding-top: 30px;
   grid-area: section;
 }
 .section-flex {
@@ -139,6 +146,20 @@ section {
 aside {
   grid-area: aside;
   padding: 30px;
+  background-color: rgba(100, 148, 237, 0.151);
+  border: 3px solid rgba(100, 148, 237, 0.527);
+}
+aside #city:hover {
+  border: 3px cornflowerblue solid;
+}
+aside #date:hover {
+  border: 3px cornflowerblue solid;
+}
+aside #date-return:hover {
+  border: 3px cornflowerblue solid;
+}
+aside #submitbtn:hover {
+  border: 3px cornflowerblue solid;
 }
 footer {
   grid-area: footer;
@@ -146,7 +167,7 @@ footer {
 
 /* Identify grid areas */
 #content > * {
-  border: cornflowerblue solid 2px;
+  // border: cornflowerblue solid 2px;
   border-radius: 15px;
 }
 
