@@ -1,4 +1,5 @@
 import { publishServer } from './js/publishServer.js';
+import { dynamicDisplay } from './js/dynamicDisplay.js';
 import './styles/resets.scss';
 import './styles/base.scss';
 import './styles/footer.scss';
@@ -8,3 +9,4 @@ import './styles/header.scss';
 console.log('CHANGE!!');
 
 publishServer();
+dynamicDisplay();
