@@ -13,6 +13,20 @@ body {
   color: black;
   background-color: white;
 }
+html {
+  font-size: calc(1em + 1vw);
+}
+h1 {
+  font-size: 2em;
+  font-weight: 700;
+}
+h2 {
+  font-size: 1em;
+  font-weight: 700;
+}
+p {
+  font-size: 0.75em;
+}
 
 /*---------- Grid template areas -----------*/
 /* Mobile devices */
@@ -25,11 +39,13 @@ body {
     grid-gap: 10px;
     grid-template-areas:
       'header'
-      'nav'
+      'aside'
+      'section'
+      'main'
+      'main'
       'main'
       'article'
-      'section'
-      'aside'
+      'article'
       'footer';
   }
 }
@@ -44,16 +60,14 @@ body {
     grid-gap: 10px;
     grid-template-areas:
       'header header header header'
-      'nav nav nav nav'
-      'nav nav nav nav'
-      'section section section section'
-      'aside main main main'
-      'aside main main main'
-      '. main main main'
-      '. main main main'
-      'article article article article'
-      'article article article article'
-      'article article article article'
+      'aside section article article'
+      'aside section article article'
+      'main main main main'
+      'main main main main'
+      'main main main main'
+      'main main main main'
+      'main main main main'
+      'main main main main'
       'footer footer footer footer';
   }
 }
@@ -72,37 +86,51 @@ body {
       'aside aside section main main main main main'
       'aside aside section main main main main main'
       'aside aside section main main main main main'
-      'nav nav nav main main main main main'
+      'article article article main main main main main'
       'article article article main main main main main'
       'article article article main main main main main'
       'footer footer footer footer footer footer footer footer';
   }
-  header h1 {
-    font-size: 80px;
-    text-align: left;
-    font-weight: 700;
+  p {
+    font-size: 0.65em;
   }
 }
 
 /* Grid area assignment */
 header {
   grid-area: header;
+  padding: 30px;
 }
-nav {
-  grid-area: nav;
+header h1 {
+  text-align: left;
 }
-
 main {
   grid-area: main;
 }
 article {
   grid-area: article;
+  padding: 30px;
+}
+article h2 {
+  text-align: left;
 }
 section {
   grid-area: section;
+  padding: 10px;
+}
+.section-flex {
+  display: flex;
+  flex-direction: column;
+}
+.itinerary {
+  background: orangered;
+  border: black 1px solid;
+  height: 50px;
+  justify-content: space-between;
 }
 aside {
   grid-area: aside;
+  padding: 30px;
 }
 footer {
   grid-area: footer;
@@ -112,7 +140,6 @@ footer {
 #content > * {
   border: cornflowerblue solid 2px;
   border-radius: 15px;
-  padding: 30px;
 }
 
 /* Other styling */

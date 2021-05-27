@@ -91,7 +91,6 @@ const compareDate = () => {
 // -------------------Fetch from Weatherbit---------------
 const getWeather = async (days, callback) => {
   const daysDiff = days;
-  console.log(daysDiff);
   // declare variables
   let geoCoords = {};
   const weatherBaseUrl = 'https://api.weatherbit.io/v2.0/';
@@ -102,7 +101,7 @@ const getWeather = async (days, callback) => {
   // logic to determine which API to hit
   if (daysDiff >= 7) {
     console.log(`hitting the 7+ days api`);
-    // If the date of travel is < 6 days
+    // If the date of travel is > 6 days
     await fetch(
       `${weatherBaseUrl}forecast/daily?lat=${geoCoords.lat}&lon=${geoCoords.lng}&key=${weatherbitKey}`
     )
@@ -160,4 +159,5 @@ app.post('/nodeserver', async (req, res) => {
     responseData.push({ pixabay: data });
   });
   await res.send(responseData);
+  console.log(appData);
 });

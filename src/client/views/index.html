@@ -7,18 +7,13 @@
   </head>
 
   <body>
-    <div id="absolute-header">
-      <h1>Travel Planner</h1>
-    </div>
     <div id="content">
       <header>
-        header
         <h1>Travel Planner</h1>
       </header>
-      <nav>Nav</nav>
       <aside>
-        aside
         <form>
+          <label for="city"><p>Destination</p></label>
           <input
             type="text"
             placeholder="Enter city here"
@@ -26,37 +21,61 @@
             id="city"
             required
           />
+          <label for="date"><p>Departure Date</p></label>
           <input type="date" id="date" />
-          <input type="button" value="Vacation Time!" id="submitbtn" />
+          <label for="date-return"><p>Return Date</p></label>
+          <input type="date" id="date-return" />
+          <input type="button" value="Go!" id="submitbtn" />
         </form>
       </aside>
 
       <main>
-        <h1>main</h1>
         <img src="" alt="" id="placeImage" />
       </main>
-
-      <article>Article</article>
       <section>
-        section
-        <p>Travelling to:</p>
-        <div class="dest-result"></div>
-        <br />
-        <br />
-        <p>Travelling on:</p>
-        <div class="date-result"></div>
+        <div class="section-flex">
+          <div class="itinerary">
+            <p>Travelling to:</p>
+          </div>
+          <div class="itinerary">
+            <div class="dest-result"></div>
+          </div>
+          <div class="itinerary">
+            <p>Travelling on:</p>
+          </div>
+          <div class="itinerary">
+            <div class="date-result"></div>
+          </div>
+          <div class="itinerary">
+            <p>Return date:</p>
+          </div>
+          <div class="itinerary">
+            <div class="date2-result"></div>
+          </div>
+          <div class="itinerary">
+            <p>Trip duration:</p>
+          </div>
+          <div class="itinerary">
+            <div class="duration-result"></div>
+          </div>
+        </div>
       </section>
 
-      <footer>Footer</footer>
+      <article>
+        <h2>Weather</h2>
+        <div id="weather-forecast"></div>
+      </article>
+
+      <footer></footer>
     </div>
     <script>
-      // // Check that service workers are supported
-      // if ('serviceWorker' in navigator) {
-      //   // Use the window load event to keep the page load performant
-      //   window.addEventListener('load', () => {
-      //     navigator.serviceWorker.register('/service-worker.js');
-      //   });
-      // }
+      // Check that service workers are supported
+      if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
     </script>
   </body>
 </html>
